@@ -1,0 +1,26 @@
+[
+	{
+		"id": "f8baac82-70b4-42fa-87ce-872b0938b38f",
+		"name": "Usain Bolt",
+		"gender": "M",
+		"birthDate": "1986-08-21",
+		"federation": "Jamaica",
+		"modality": "Atletismo"
+	},
+	{
+		"id": "c7bf6a93-b195-4bf5-a7b5-3de6231f15d9",
+		"name": "Neymar Junior",
+		"gender": "M",
+		"birthDate": "1992-02-05",
+		"federation": "Brasil",
+		"modality": "Futebol"
+	},
+	{
+		"id": "ca6c56b5-5276-4456-9074-738789fb5e98",
+		"name": "Maria Sharapova",
+		"gender": "F",
+		"birthDate": "1987-04-19",
+		"federation": "Russia",
+		"modality": "Tenis"
+	}
+]
