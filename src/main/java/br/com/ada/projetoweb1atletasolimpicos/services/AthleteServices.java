@@ -4,7 +4,6 @@ import br.com.ada.projetoweb1atletasolimpicos.repositories.AthleteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.UUID;
 
 @Service
 public class AthleteServices {
@@ -13,14 +12,11 @@ public class AthleteServices {
     private AthleteRepository athleteRepository;
 
     public Athlete save(Athlete newAthlete) {
-        Athlete updatedAthlete = newAthlete;
-        if(athleteRepository.findAll().stream().anyMatch(athlete -> athlete.equals(newAthlete))) {
-            updatedAthlete = athleteRepository.findAll().stream().filter(athlete -> athlete.equals(newAthlete)).map(athlete -> {
-                newAthlete.setId(athlete.getId());
-                return newAthlete;
-            }).toList().get(0);
+        if (findAll().stream().anyMatch(athlete -> (athlete.getName().equals(newAthlete.getName())
+        && ( athlete.getBirthDate().equals(newAthlete.getBirthDate()))))){
+            return null;
         }
-        return athleteRepository.save(updatedAthlete);
+        return athleteRepository.save(newAthlete);
 
 
     }
@@ -29,12 +25,12 @@ public class AthleteServices {
         return  athleteRepository.findAll();
     }
 
-    public Athlete findById(UUID id) {
+    public Athlete findById(Long id) {
         return athleteRepository.findById(id).orElse(null);
     }
 
-    public Athlete findByName(String name) {
-        return athleteRepository.findByName(name);
+    public List<Athlete> findByNameStartingWith(String name) {
+        return athleteRepository.findByNameStartingWith(name);
     }
 
     public List<Athlete> findByFederation(String federation) {
@@ -45,8 +41,12 @@ public class AthleteServices {
         return athleteRepository.findByModality(modality);
     }
 
-    public void deleteById(UUID id) {
+    public void deleteById(Long id) {
         athleteRepository.deleteById(id);
     }
 
+    public Athlete update(Long id, Athlete athlete) {
+        athlete.setId(id);
+        return athleteRepository.save(athlete);
+    }
 }

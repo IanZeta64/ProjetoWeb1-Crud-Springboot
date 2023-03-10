@@ -8,25 +8,26 @@
 <body>
 <h1> Add Athlete </h1>
 <form th:action="@{athletes}" method="post">
+  <input type="hidden" name="id" th:value="${athlete.id}"/>
   <label>Name</label>
   <label>
-    <input type="text" name="name"/>
+    <input th:value="${athlete.name}" type="text" name="name"/>
   </label></br>
   <label>Gender</label>
   <label>
-    <input type="text" name="gender"/>
+    <input th:value="${athlete.gender}" type="text" name="gender"/>
   </label></br>
   <label>Birth Date</label>
   <label>
-    <input type="text" name="birthDate"/>
+    <input th:value="${athlete.birthDate}" type="text" name="birthDate"/>
   </label></br>
   <label>Federation</label>
   <label>
-    <input type="text" name="federation"/>
+    <input th:value="${athlete.federation}" type="text" name="federation"/>
   </label></br>
   <label>Modality</label>
   <label>
-    <input type="text" name="modality"/>
+    <input th:value="${athlete.modality}" type="text" name="modality"/>
   </label></br>
 
   <button type="submit">Save</button>

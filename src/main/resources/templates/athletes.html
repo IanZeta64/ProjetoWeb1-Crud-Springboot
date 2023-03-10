@@ -15,6 +15,14 @@
         <input type="text" name="modality"/>
         <button type="submit">Search by modality</button>
     </form>
+    <form method="post" th:action="@{./name}">
+        <input type="text" name="name"/>
+        <button type="submit">Search by name</button>
+    </form>
+    <form method="post" th:action="@{./id}">
+        <input type="text" name="id"/>
+        <button type="submit">Search by Id</button>
+    </form>
         <table>
         <tr><th>Athlete ID</th><th>Name</th><th>Gender</th><th>Birth Date</th><th>Federation</th><th>Modality</th></tr>
             <tr th:each="athlete : ${athletes}">
@@ -30,8 +38,8 @@
        </form>
        </td>
                 <td>
-                    <form method="post" th:action="@{./edit={id}(id=${athlete.id})}">
-                        <button><a href="add-athlete">Edit</a></button>
+                    <form method="get" th:action="@{./athletes/{id}(id=${athlete.id})}">
+                        <button type="submit">Edit</button>
                     </form>
                 </td>
        </tr>

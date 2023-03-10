@@ -7,30 +7,29 @@ import jakarta.persistence.Id;
 
 import java.time.LocalDate;
 import java.util.Objects;
-import java.util.UUID;
+
 
 @Entity
 public class Athlete {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String gender;
     private LocalDate birthDate;
     private String federation;
     private String modality;
 
-
     public Athlete() {
 
     }
 
-    public UUID getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -78,12 +77,11 @@ public class Athlete {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Athlete athlete)) return false;
-        return getName().equals(athlete.getName()) && getBirthDate().equals(athlete.getBirthDate());
+        return getId().equals(athlete.getId());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getName(), getBirthDate());
+        return Objects.hash(getId());
     }
-
 }

@@ -3,11 +3,10 @@ package br.com.ada.projetoweb1atletasolimpicos.controllers;
 import br.com.ada.projetoweb1atletasolimpicos.model.Athlete;
 import br.com.ada.projetoweb1atletasolimpicos.services.AthleteServices;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/rest/athletes")
@@ -27,13 +26,13 @@ public class AthleteRestController {
     }
 
     @GetMapping("/id/{id}")
-    public Athlete findById(@PathVariable UUID id){
+    public Athlete findById(@PathVariable Long id){
         return athleteServices.findById(id);
     }
 
     @GetMapping("/name/{name}")
-    public Athlete findByName(@PathVariable String name){
-        return athleteServices.findByName(name);
+    public List<Athlete> findByNameStartingWith(@PathVariable String name){
+        return athleteServices.findByNameStartingWith(name);
     }
 
     @GetMapping("/federation/{federation}")
@@ -47,13 +46,13 @@ public class AthleteRestController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteById(@PathVariable UUID id){
+    public void deleteById(@PathVariable Long id){
         athleteServices.deleteById(id);
     }
 
-//    @PostMapping("/update")
-//    public Athlete update(@RequestParam UUID id, @RequestBody Athlete athlete){
-//        return athleteServices.update(id, athlete);
-//    }
+    @PostMapping("/update/{id}")
+    public Athlete update(@PathVariable Long id, @RequestBody Athlete athlete){
+        return athleteServices.update(id, athlete);
+    }
 
 }

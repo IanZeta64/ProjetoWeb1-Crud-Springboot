@@ -5,11 +5,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.UUID;
 
 @Repository
-public interface AthleteRepository extends JpaRepository<Athlete, UUID> {
-    Athlete findByName(String name);
+public interface AthleteRepository extends JpaRepository<Athlete, Long> {
+    List<Athlete> findByNameStartingWith(String name);
 
     List<Athlete> findByFederation(String federation);
 
